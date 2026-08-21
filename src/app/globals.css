@@ -1,26 +1,323 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #000000;
+  --foreground: #ffffff;
+  --accent: #7dd3fc;
+  
+  /* Custom Design System Tokens */
+  --accent-violet: #c084fc;
+  --muted-text: #a1a1aa; /* zinc-400 */
+  --muted-dark: #3f3f46; /* zinc-700 */
+  
+  /* Glassmorphism theme values */
+  --glass-bg: rgba(10, 10, 10, 0.45);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-border-hover: rgba(255, 255, 255, 0.16);
+  --glass-glow-cyan: rgba(125, 211, 252, 0.12);
+  --glass-glow-violet: rgba(192, 132, 252, 0.12);
+
+  /* ─────────────────────────────────────────────────────────
+   * NEXUS DESIGN SYSTEM TOKENS (Sprint 01)
+   * These CSS custom properties mirror src/design/colors.ts.
+   * Prefer importing from "@/design" in TypeScript files.
+   * Use these vars only in CSS contexts.
+   * ───────────────────────────────────────────────────────── */
+
+  /* Backgrounds */
+  --nexus-canvas:   #050608;
+  --nexus-surface:  #0B1118;
+  --nexus-elevated: #131C26;
+
+  /* Glass (interaction layer only) */
+  --nexus-glass:              rgba(255, 255, 255, 0.05);
+  --nexus-glass-border:       rgba(255, 255, 255, 0.10);
+  --nexus-glass-border-hover: rgba(255, 255, 255, 0.16);
+
+  /* Text */
+  --nexus-text-primary:   #FFFFFF;
+  --nexus-text-secondary: rgba(255, 255, 255, 0.72);
+  --nexus-text-muted:     rgba(255, 255, 255, 0.45);
+  --nexus-text-disabled:  rgba(255, 255, 255, 0.25);
+
+  /* Accent */
+  --nexus-accent:     #7BD7FF;
+  --nexus-highlight:  #DDF6FF;
+  --nexus-accent-glow: rgba(123, 215, 255, 0.08);
+
+  /* Semantic */
+  --nexus-error:   #FF5A5A;
+  --nexus-success: #2ED573;
+  --nexus-warning: #FFC857;
+
+  /* Borders */
+  --nexus-border-subtle:   rgba(255, 255, 255, 0.06);
+  --nexus-border-default:  rgba(255, 255, 255, 0.10);
+  --nexus-border-strong:   rgba(255, 255, 255, 0.18);
+
+  /* Environment */
+  --nexus-light-source: rgba(123, 215, 255, 0.06);
+  --nexus-vignette:     rgba(0, 0, 0, 0.85);
 }
 
 @theme inline {
+  /* Legacy Theme Mappings (Do not remove — used by core layouts) */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-muted-text: var(--muted-text);
+  --color-muted-dark: var(--muted-dark);
+
+  /* Design System Colors */
+  --color-canvas: #050608;
+  --color-surface: #0b1118;
+  --color-elevated: #131c26;
+  --color-glass: rgba(255, 255, 255, 0.05);
+  --color-glass-border: rgba(255, 255, 255, 0.10);
+  --color-glass-border-hover: rgba(255, 255, 255, 0.16);
+  --color-glass-bg: var(--glass-bg);
+  --color-glass-glow-cyan: var(--glass-glow-cyan);
+  --color-glass-glow-violet: var(--glass-glow-violet);
+  --color-text-primary: #ffffff;
+  --color-text-secondary: rgba(255, 255, 255, 0.72);
+  --color-text-muted: rgba(255, 255, 255, 0.45);
+  --color-text-disabled: rgba(255, 255, 255, 0.25);
+  --color-accent: #7bd7ff;
+  --color-accent-violet: var(--accent-violet);
+  --color-highlight: #ddf6ff;
+  --color-accent-glow: rgba(123, 215, 255, 0.08);
+  --color-border-subtle: rgba(255, 255, 255, 0.06);
+  --color-border-default: rgba(255, 255, 255, 0.10);
+  --color-border-strong: rgba(255, 255, 255, 0.18);
+
+  /* Design System Shadows */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.45);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.5), 0 1px 4px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.55), 0 2px 8px rgba(0, 0, 0, 0.4);
+  --shadow-xl: 0 16px 64px rgba(0, 0, 0, 0.65), 0 4px 16px rgba(0, 0, 0, 0.5);
+  --shadow-panel: 0 4px 24px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  --shadow-elevated: 0 12px 40px rgba(0, 0, 0, 0.6), 0 2px 8px rgba(0, 0, 0, 0.45);
+  --shadow-scene: 0 32px 80px rgba(0, 0, 0, 0.7), 0 8px 32px rgba(0, 0, 0, 0.55);
+
+  --font-sans: var(--font-poppins);
+
+  /* Transition Durations */
+  --transition-duration-instant: 100ms;
+  --transition-duration-fast: 150ms;
+  --transition-duration-hover: 200ms;
+  --transition-duration-normal: 300ms;
+  --transition-duration-comfortable: 450ms;
+  --transition-duration-slow: 600ms;
+  --transition-duration-deliberate: 900ms;
+  --transition-duration-reveal: 1200ms;
+  --transition-duration-cinematic: 1800ms;
+  --transition-duration-scene: 2500ms;
+
+  /* Transition Easing Functions */
+  --transition-timing-function-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-timing-function-enter: cubic-bezier(0, 0, 0.2, 1);
+  --transition-timing-function-exit: cubic-bezier(0.4, 0, 1, 1);
+  --transition-timing-function-emphasized: cubic-bezier(0.2, 0, 0, 1);
+  --transition-timing-function-architectural: cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--nexus-canvas, #050608);
+  color: #ffffff;
+  font-family: var(--font-poppins), var(--font-sans), sans-serif;
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+  user-select: none;
 }
+
+/* Custom design system global classes */
+.glass-effect {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+}
+
+.glass-effect-hover {
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-effect-hover:hover {
+  background: rgba(20, 20, 20, 0.6);
+  border-color: var(--glass-border-hover);
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.02);
+}
+
+/* ─────────────────────────────────────────────────────────────
+ * NEXUS AMBIENT ENVIRONMENT ANIMATION
+ * Drives the drift layer in Environment and SystemAmbientBackground.
+ * Extremely slow cycles — designed to be subliminal and GPU-friendly.
+ * ───────────────────────────────────────────────────────────── */
+
+@keyframes nexus-drift {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(12px, -8px) scale(1.02);
+  }
+  66% {
+    transform: translate(-10px, 6px) scale(0.99);
+  }
+  100% {
+    transform: translate(18px, -12px) scale(1.01);
+  }
+}
+
+@keyframes nexus-atmosphere-a {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  50% {
+    transform: translate(25px, -15px) scale(1.03);
+  }
+  100% {
+    transform: translate(-10px, 10px) scale(0.98);
+  }
+}
+
+@keyframes nexus-atmosphere-b {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  50% {
+    transform: translate(-30px, 20px) scale(0.97);
+  }
+  100% {
+    transform: translate(20px, -10px) scale(1.02);
+  }
+}
+
+@keyframes nexus-atmosphere-c {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  50% {
+    transform: translate(15px, 25px) scale(1.01);
+  }
+  100% {
+    transform: translate(-20px, -15px) scale(0.99);
+  }
+}
+
+/* Disable all ambient environment motion when reduced motion is preferred */
+@media (prefers-reduced-motion: reduce) {
+  @keyframes nexus-drift {
+    0%, 100% { transform: none; }
+  }
+  @keyframes nexus-atmosphere-a {
+    0%, 100% { transform: none; }
+  }
+  @keyframes nexus-atmosphere-b {
+    0%, 100% { transform: none; }
+  }
+  @keyframes nexus-atmosphere-c {
+    0%, 100% { transform: none; }
+  }
+
+  /* Also disable any transition on the Environment layer */
+  [data-transition-variant] {
+    transition: none !important;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────
+ * HEROTEXT RESPONSIVE SIZING
+ * Applies sm-breakpoint font sizes for HeroText variants.
+ * The component sets --font-size-sm as a CSS custom property.
+ * These rules apply at ≥640px using that value.
+ * ───────────────────────────────────────────────────────────── */
+
+@media (min-width: 640px) {
+  [data-variant="heroXXL"] {
+    font-size: 6rem; /* 96px */
+  }
+  [data-variant="hero"],
+  [data-variant="heroXL"] {
+    font-size: 4.5rem; /* 72px */
+  }
+  [data-variant="heroLarge"] {
+    font-size: 3rem; /* 48px */
+  }
+  [data-variant="statement"] {
+    font-size: 2.25rem; /* 36px */
+  }
+  [data-variant="chapter"] {
+    font-size: 2rem; /* 32px */
+  }
+  [data-variant="section"] {
+    font-size: 1.25rem; /* 20px */
+  }
+  [data-variant="bodyLarge"] {
+    font-size: 1.25rem; /* 20px */
+  }
+  [data-variant="body"],
+  [data-variant="reflection"] {
+    font-size: 1rem; /* 16px */
+  }
+  [data-variant="bodySmall"] {
+    font-size: 0.875rem; /* 14px */
+  }
+  [data-variant="navigation"],
+  [data-variant="caption"] {
+    font-size: 0.6875rem; /* 11px */
+  }
+  [data-variant="metadata"] {
+    font-size: 0.625rem; /* 10px */
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────
+ * CHAPTER BACKGROUND OVERRIDES FOR GLOBAL ENVIRONMENT VISIBILITY
+ * Target chapter wrapper divs and override their solid/gradient
+ * backgrounds to allow the underlying Environment layers to blend through.
+ * ───────────────────────────────────────────────────────────── */
+main,
+main > div,
+main .bg-black {
+  background-color: transparent !important;
+}
+
+main > div[style*="radial-gradient"] {
+  background: radial-gradient(circle at 50% 55%, rgba(12, 28, 48, 0.2) 0%, transparent 85%) !important;
+}
+
+/* ─────────────────────────────────────────────────────────────
+ * EXPERIENCE SHELL UTILITIES
+ * Custom scrollbars and visible accessibility focus states.
+ * ───────────────────────────────────────────────────────────── */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 99px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Premium accessible outline ring styling */
+*:focus-visible {
+  outline: 1.5px solid var(--color-accent, #7dd3fc) !important;
+  outline-offset: 4px !important;
+}
+
+
+
+

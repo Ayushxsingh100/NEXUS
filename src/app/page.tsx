@@ -1,65 +1,223 @@
-import Image from "next/image";
+"use client";
+
+import React, { useState, useEffect, useRef } from "react";
+import dynamic from "next/dynamic";
+
+const ChapterOne = dynamic(() => import("@/chapters/chapter-1/ChapterOne"), { ssr: false });
+const ChapterTwo = dynamic(() => import("@/chapters/chapter-2/ChapterTwo"), { ssr: false });
+const ChapterThree = dynamic(() => import("@/chapters/chapter-3/ChapterThree"), { ssr: false });
+const ChapterFour = dynamic(() => import("@/chapters/chapter-4/ChapterFour"), { ssr: false });
+const ChapterFive = dynamic(() => import("@/chapters/chapter-5/ChapterFive"), { ssr: false });
+const ChapterSix = dynamic(() => import("@/chapters/chapter-6/ChapterSix"), { ssr: false });
+const ChapterSeven = dynamic(() => import("@/chapters/chapter-7/ChapterSeven"), { ssr: false });
+const ChapterEight = dynamic(() => import("@/chapters/chapter-8/ChapterEight"), { ssr: false });
+const Epilogue = dynamic(() => import("@/chapters/epilogue/Epilogue"), { ssr: false });
+
+import { GlobalHeader } from "@/components/system/Shell/GlobalHeader";
+import { GlobalNavigationDrawer } from "@/components/system/Shell/GlobalNavigationDrawer";
+import { TransitionLayer, useTransitionLayer } from "@/components/system/TransitionLayer";
 
 export default function Home() {
+  type ChapterType = "chapter-1" | "chapter-2" | "chapter-3" | "chapter-4" | "chapter-5" | "chapter-6" | "chapter-7" | "chapter-8" | "epilogue";
+
+  const [activeChapter, setActiveChapter] = useState<ChapterType>("chapter-1");
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const transitionRef = useRef<HTMLDivElement>(null);
+  const { transitionTo } = useTransitionLayer(transitionRef);
+
+  const handleGlobalNavigate = (chapterId: string) => {
+    setIsMenuOpen(false);
+    transitionTo(() => {
+      setActiveChapter(chapterId as ChapterType);
+    });
+  };
+
+  useEffect(() => {
+    const handleNavigationEvent = (e: Event) => {
+      const customEvent = e as CustomEvent<string>;
+      if (customEvent.detail) {
+        handleGlobalNavigate(customEvent.detail);
+      }
+    };
+    window.addEventListener("nexus-navigate", handleNavigationEvent);
+    return () => window.removeEventListener("nexus-navigate", handleNavigationEvent);
+  }, []);
+
+  // Transitions between chapters are now delegated directly to interactive component callbacks.
+
+  // Intercept click on the PROJECTS node in Chapter III to trigger the transition to Chapter IV
+  useEffect(() => {
+    if (activeChapter !== "chapter-3") return;
+
+    const handleGlobalClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (target && (target.classList.contains("node-projects") || target.closest(".node-projects"))) {
+        // PROJECTS was clicked.
+        // Wait 2.8s for Chapter III's camera zoom and fade-to-black to complete, then swap components.
+        const timer = setTimeout(() => {
+          handleGlobalNavigate("chapter-4");
+        }, 2800);
+        return () => clearTimeout(timer);
+      }
+    };
+
+    document.addEventListener("click", handleGlobalClick);
+    return () => document.removeEventListener("click", handleGlobalClick);
+  }, [activeChapter]);
+
+  // Intercept click on the EXPERIENCE node in Chapter III to trigger the transition to Chapter V
+  useEffect(() => {
+    if (activeChapter !== "chapter-3") return;
+
+    const handleGlobalClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (target && (target.classList.contains("node-experience") || target.closest(".node-experience"))) {
+        // EXPERIENCE was clicked.
+        // Wait 2.8s for Chapter III's camera zoom and fade-to-black to complete, then swap components.
+        const timer = setTimeout(() => {
+          handleGlobalNavigate("chapter-5");
+        }, 2800);
+        return () => clearTimeout(timer);
+      }
+    };
+
+    document.addEventListener("click", handleGlobalClick);
+    return () => document.removeEventListener("click", handleGlobalClick);
+  }, [activeChapter]);
+
+  // Intercept click on the BLOGS node in Chapter III to trigger the transition to Chapter VI
+  useEffect(() => {
+    if (activeChapter !== "chapter-3") return;
+
+    const handleGlobalClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (target && (target.classList.contains("node-blogs") || target.closest(".node-blogs"))) {
+        // BLOGS was clicked.
+        // Wait 2.8s for Chapter III's camera zoom and fade-to-black to complete, then swap components.
+        const timer = setTimeout(() => {
+          handleGlobalNavigate("chapter-6");
+        }, 2800);
+        return () => clearTimeout(timer);
+      }
+    };
+
+    document.addEventListener("click", handleGlobalClick);
+    return () => document.removeEventListener("click", handleGlobalClick);
+  }, [activeChapter]);
+
+  // Intercept click on the ABOUT node in Chapter III to trigger the transition to Chapter VII
+  useEffect(() => {
+    if (activeChapter !== "chapter-3") return;
+
+    const handleGlobalClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (target && (target.classList.contains("node-about") || target.closest(".node-about"))) {
+        // ABOUT was clicked.
+        // Wait 2.8s for Chapter III's camera zoom and fade-to-black to complete, then swap components.
+        const timer = setTimeout(() => {
+          handleGlobalNavigate("chapter-7");
+        }, 2800);
+        return () => clearTimeout(timer);
+      }
+    };
+
+    document.addEventListener("click", handleGlobalClick);
+    return () => document.removeEventListener("click", handleGlobalClick);
+  }, [activeChapter]);
+
+  // Intercept click on the CONTACT node in Chapter III to trigger the transition to Chapter VIII
+  useEffect(() => {
+    if (activeChapter !== "chapter-3") return;
+
+    const handleGlobalClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (target && (target.classList.contains("node-contact") || target.closest(".node-contact"))) {
+        // CONTACT was clicked.
+        // Wait 2.8s for Chapter III's camera zoom and fade-to-black to complete, then swap components.
+        const timer = setTimeout(() => {
+          handleGlobalNavigate("chapter-8");
+        }, 2800);
+        return () => clearTimeout(timer);
+      }
+    };
+
+    document.addEventListener("click", handleGlobalClick);
+    return () => document.removeEventListener("click", handleGlobalClick);
+  }, [activeChapter]);
+
+  const handleTransitionToChapterThree = () => {
+    handleGlobalNavigate("chapter-3");
+  };
+
+  const handleReturnToChapterThree = () => {
+    handleGlobalNavigate("chapter-3");
+  };
+
+  const handleCompleteJourney = () => {
+    handleGlobalNavigate("epilogue");
+  };
+
+  const toggleMenu = () => {
+    setIsMenuOpen((prev) => !prev);
+  };
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+    <>
+      <GlobalHeader
+        activeChapter={activeChapter}
+        isOpen={isMenuOpen}
+        onToggleMenu={toggleMenu}
+      />
+      
+      <GlobalNavigationDrawer
+        isOpen={isMenuOpen}
+        activeChapter={activeChapter}
+        onClose={toggleMenu}
+        onNavigate={handleGlobalNavigate}
+      />
+
+      <main id="main-content" className={`w-full h-screen bg-black relative ${activeChapter === "chapter-7" ? "overflow-y-auto" : "overflow-hidden"}`}>
+        {activeChapter === "chapter-1" && (
+          <ChapterOne onComplete={() => handleGlobalNavigate("chapter-2")} />
+        )}
+
+        {activeChapter === "chapter-2" && (
+          <ChapterTwo onTransition={handleTransitionToChapterThree} />
+        )}
+
+        {activeChapter === "chapter-3" && <ChapterThree />}
+
+        {activeChapter === "chapter-4" && (
+          <ChapterFour onReturn={handleReturnToChapterThree} />
+        )}
+
+        {activeChapter === "chapter-5" && (
+          <ChapterFive onReturn={handleReturnToChapterThree} />
+        )}
+
+        {activeChapter === "chapter-6" && (
+          <ChapterSix onReturn={handleReturnToChapterThree} />
+        )}
+
+        {activeChapter === "chapter-7" && (
+          <ChapterSeven
+            onReturn={handleReturnToChapterThree}
+            onContact={() => handleGlobalNavigate("chapter-8")}
+          />
+        )}
+
+        {activeChapter === "chapter-8" && (
+          <ChapterEight
+            onReturn={handleReturnToChapterThree}
+            onCompleteJourney={handleCompleteJourney}
+          />
+        )}
+
+        {activeChapter === "epilogue" && <Epilogue />}
       </main>
-    </div>
+
+      <TransitionLayer ref={transitionRef} variant="dissolve" />
+    </>
   );
 }
