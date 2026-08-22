@@ -10,14 +10,13 @@ export interface GlobalHeaderProps {
 
 const CHAPTER_LABELS: Record<string, { num: string; title: string }> = {
   "chapter-1": { num: "01", title: "Genesis" },
-  "chapter-2": { num: "02", title: "The Question" },
-  "chapter-3": { num: "03", title: "Thought Hub" },
-  "chapter-4": { num: "04", title: "Systems Topology" },
-  "chapter-5": { num: "05", title: "Interactive Timeline" },
-  "chapter-6": { num: "06", title: "Knowledge Library" },
-  "chapter-7": { num: "07", title: "Beyond The Code" },
-  "chapter-8": { num: "08", title: "Communication Hub" },
-  epilogue: { num: "09", title: "The Signature" },
+  "chapter-3": { num: "02", title: "Thought Hub" },
+  "chapter-4": { num: "03", title: "Systems Topology" },
+  "chapter-5": { num: "04", title: "Interactive Timeline" },
+  "chapter-6": { num: "05", title: "Knowledge Library" },
+  "chapter-7": { num: "06", title: "Beyond The Code" },
+  "chapter-8": { num: "07", title: "Communication Hub" },
+  epilogue: { num: "08", title: "The Signature" },
 };
 
 export function GlobalHeader({ activeChapter, isOpen, onToggleMenu }: GlobalHeaderProps) {

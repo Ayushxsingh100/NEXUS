@@ -11,14 +11,13 @@ export interface GlobalNavigationDrawerProps {
 
 const CHAPTERS_LIST = [
   { id: "chapter-1", num: "01", title: "Genesis", desc: "Foundational Cinematic Entry" },
-  { id: "chapter-2", num: "02", title: "The Question", desc: "Dialectical Architecture Query" },
-  { id: "chapter-3", num: "03", title: "Thought Hub", desc: "Interactive System Directory" },
-  { id: "chapter-4", num: "04", title: "Systems Topology", desc: "Engineering Project Case Studies" },
-  { id: "chapter-5", num: "05", title: "Interactive Timeline", desc: "Career & Project Milestones" },
-  { id: "chapter-6", num: "06", title: "Knowledge Library", desc: "Technical Research & Notebooks" },
-  { id: "chapter-7", num: "07", title: "Beyond The Code", desc: "Personal Values & Perspectives" },
-  { id: "chapter-8", num: "08", title: "Communication Hub", desc: "Direct Messaging Interface" },
-  { id: "epilogue", num: "09", title: "The Signature", desc: "Epilogue Summary" },
+  { id: "chapter-3", num: "02", title: "Thought Hub", desc: "Interactive System Directory" },
+  { id: "chapter-4", num: "03", title: "Systems Topology", desc: "Engineering Project Case Studies" },
+  { id: "chapter-5", num: "04", title: "Interactive Timeline", desc: "Career & Project Milestones" },
+  { id: "chapter-6", num: "05", title: "Knowledge Library", desc: "Technical Research & Notebooks" },
+  { id: "chapter-7", num: "06", title: "Beyond The Code", desc: "Personal Values & Perspectives" },
+  { id: "chapter-8", num: "07", title: "Communication Hub", desc: "Direct Messaging Interface" },
+  { id: "epilogue", num: "08", title: "The Signature", desc: "Epilogue Summary" },
 ];
 
 export function GlobalNavigationDrawer({

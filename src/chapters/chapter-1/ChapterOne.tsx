@@ -148,129 +148,119 @@ export default function ChapterOne({ onComplete }: ChapterOneProps) {
       <BreathingDot />
       <ManifestoSequence />
 
-      {/* ── ONE Hero Frame ─────────────────────────────────────────────────── */}
+      {/* ── Responsive layout styles ─────────────────────────────────────────── */}
       <style dangerouslySetInnerHTML={{ __html: `
-        /* ── Mobile layout ── */
-        @media (max-width: 767px) {
-          .genesis-hero-main {
-            display: flex !important;
-            flex-direction: column !important;
-            align-items: center !important;
-            gap: 0 !important;
-            padding-top: 80px;
-            padding-bottom: 100px;
-          }
-          .genesis-left-col {
-            width: 100% !important;
-            align-items: center !important;
-            text-align: center !important;
-          }
-          .genesis-left-col h1 {
-            font-size: clamp(54px, 17vw, 76px) !important;
-            text-align: center !important;
-          }
-          .genesis-left-col p {
-            text-align: center !important;
-            max-width: 360px !important;
-          }
-          .genesis-right-col {
-            width: 100% !important;
-            max-width: 520px !important;
-          }
-          .visual-stage-wrapper {
-            height: min(440px, 60vw) !important;
-          }
-          /* Mobile cards: stacked below */
-          .genesis-mobile-cards {
-            display: flex !important;
+        /* ── Hero outer frame: full viewport, flex-centred ── */
+        .genesis-hero-frame {
+          position: absolute;
+          inset: 0;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          pointer-events: none;
+          z-index: 20;
+          padding: clamp(56px, 6vh, 80px) clamp(20px, 3vw, 48px) clamp(72px, 9vh, 100px);
+          box-sizing: border-box;
+        }
+
+        /* ── Centred max-width container ── */
+        .genesis-hero-container {
+          width: 100%;
+          max-width: 1360px;
+          display: grid;
+          grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+          align-items: center;
+          gap: clamp(16px, 2.5vw, 40px);
+        }
+
+        /* ── Left column ── */
+        .genesis-left-col {
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+        }
+
+        /* ── Right column ── */
+        .genesis-right-col {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          min-height: 0;
+        }
+
+        /* Large desktop (1440+): slightly bigger right column */
+        @media (min-width: 1440px) {
+          .genesis-hero-container {
+            grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
           }
         }
-        /* Tablet */
-        @media (max-width: 1100px) and (min-width: 768px) {
-          .genesis-hero-main {
-            grid-template-columns: 0.75fr 1.25fr !important;
+
+        /* Laptop / standard desktop (1024–1366) */
+        @media (max-width: 1366px) {
+          .genesis-hero-container {
+            grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr);
+            gap: clamp(12px, 2vw, 28px);
           }
-          .genesis-left-col h1 {
-            font-size: clamp(64px, 6.5vw, 88px) !important;
+        }
+
+        /* Tablet landscape (768–1024) */
+        @media (max-width: 1024px) and (min-width: 768px) {
+          .genesis-hero-container {
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+            gap: 16px;
+          }
+        }
+
+        /* Tablet portrait / large mobile (600–767) */
+        @media (max-width: 767px) {
+          .genesis-hero-frame {
+            justify-content: flex-start;
+            padding-top: clamp(72px, 10vh, 96px);
+            padding-bottom: clamp(80px, 11vh, 110px);
+          }
+          .genesis-hero-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0;
+          }
+          .genesis-left-col {
+            width: 100%;
+            align-items: center;
+            text-align: center;
+          }
+          .genesis-right-col {
+            width: 100%;
+            max-width: 420px;
+          }
+          .visual-stage-wrapper {
+            height: min(380px, 56vw) !important;
+          }
+          .genesis-desktop-cards { display: none !important; }
+          .genesis-desktop-orbit { display: none !important; }
+        }
+
+        /* Small mobile */
+        @media (max-width: 430px) {
+          .visual-stage-wrapper {
+            height: min(300px, 72vw) !important;
           }
         }
       `}} />
 
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          zIndex: 20,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          pointerEvents: "none",
-        }}
-      >
-        {/* Centred max-width wrapper */}
-        <div
-          style={{
-            width: "calc(100% - 96px)",
-            maxWidth: "1440px",
-            height: "100%",
-            margin: "0 auto",
-            position: "relative",
-          }}
-        >
-          {/* ── Main grid: left text / right visual ── */}
-          <div
-            className="genesis-hero-main"
-            style={{
-              display: "grid",
-              /* 0.65fr left (≈35%) / 1.35fr right (≈65%) — matches screenshot proportions */
-              gridTemplateColumns: "0.65fr 1.35fr",
-              alignItems: "stretch",
-              gap: "32px",
-              position: "absolute",
-              top: "55px",
-              bottom: "70px",
-              left: 0,
-              right: 0,
-            }}
-          >
-            {/* LEFT: text content — vertically centred within stretched row */}
-            <div
-              className="genesis-left-col"
-              style={{ display: "flex", alignItems: "center", justifyContent: "flex-start" }}
-            >
-              <HeroLeftContent />
-            </div>
-
-            {/* RIGHT: full visual stage — stretch fills entire grid row height */}
-            <div
-              className="genesis-right-col"
-              style={{
-                display: "flex",
-                alignItems: "stretch",
-                justifyContent: "center",
-                height: "100%",
-              }}
-            >
-              <HeroRightContent />
-            </div>
+      {/* ── ONE Hero Frame ─────────────────────────────────────────────────── */}
+      <div className="genesis-hero-frame">
+        <div className="genesis-hero-container">
+          {/* LEFT: text content */}
+          <div className="genesis-left-col">
+            <HeroLeftContent />
           </div>
 
-          {/* ── Mobile card strip (hidden on desktop) ── */}
-          <div
-            className="genesis-mobile-cards"
-            style={{
-              display: "none",
-              position: "absolute",
-              bottom: "110px",
-              left: 0,
-              right: 0,
-              gap: "10px",
-              justifyContent: "center",
-              flexWrap: "wrap",
-              zIndex: 4,
-              pointerEvents: "auto",
-            }}
-          />
+          {/* RIGHT: visual stage */}
+          <div className="genesis-right-col">
+            <HeroRightContent />
+          </div>
         </div>
       </div>
 
@@ -280,7 +270,7 @@ export default function ChapterOne({ onComplete }: ChapterOneProps) {
         style={{
           position: "absolute",
           left: "50%",
-          bottom: "42px",
+          bottom: "clamp(20px, 3.5vh, 44px)",
           transform: "translateX(-50%)",
           zIndex: 30,
           opacity: 0,

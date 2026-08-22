@@ -53,16 +53,16 @@ function FloatingCard({
       className={`genesis-card ${floatClass} ${parallaxClass}`}
       style={{
         position: "absolute",
-        width: "210px",
-        padding: "12px 14px",
+        width: "clamp(160px, 14vw, 210px)",
+        padding: "10px 13px",
         borderRadius: "14px",
-        background: "rgba(10,15,22,0.82)",
-        border: "1px solid rgba(255,255,255,0.09)",
-        backdropFilter: "blur(14px)",
-        WebkitBackdropFilter: "blur(14px)",
+        background: "transparent",
+        border: "1px solid rgba(255,255,255,0.10)",
+        backdropFilter: "blur(18px)",
+        WebkitBackdropFilter: "blur(18px)",
         display: "flex",
         alignItems: "flex-start",
-        gap: "12px",
+        gap: "11px",
         pointerEvents: "auto",
         cursor: "default",
         boxShadow: "0 8px 32px rgba(0,0,0,0.45)",
@@ -72,10 +72,10 @@ function FloatingCard({
       {/* Icon box */}
       <div
         style={{
-          width: "38px",
-          height: "38px",
-          minWidth: "38px",
-          borderRadius: "10px",
+          width: "34px",
+          height: "34px",
+          minWidth: "34px",
+          borderRadius: "9px",
           background: palette.iconBg,
           border: `1px solid ${palette.iconBorder}`,
           color: palette.iconColor,
@@ -94,7 +94,7 @@ function FloatingCard({
         <span
           style={{
             fontFamily: "'Poppins', sans-serif",
-            fontSize: "13px",
+            fontSize: "clamp(11px, 0.85vw, 13px)",
             fontWeight: 600,
             color: "#ffffff",
             lineHeight: 1.3,
@@ -105,11 +105,11 @@ function FloatingCard({
         <span
           style={{
             fontFamily: "'Poppins', sans-serif",
-            fontSize: "11px",
+            fontSize: "clamp(10px, 0.72vw, 11px)",
             fontWeight: 400,
             lineHeight: 1.5,
             color: "rgba(255,255,255,0.50)",
-            marginTop: "4px",
+            marginTop: "3px",
           }}
         >
           {line1}
@@ -125,7 +125,7 @@ function FloatingCard({
    SVG Icons
 ───────────────────────────────────────────── */
 const CodeIcon = (
-  <svg width="17" height="17" fill="none" stroke="currentColor" strokeWidth="2"
+  <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2"
     strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
     <polyline points="16 18 22 12 16 6" />
     <polyline points="8 6 2 12 8 18" />
@@ -134,7 +134,7 @@ const CodeIcon = (
 );
 
 const BulbIcon = (
-  <svg width="17" height="17" fill="none" stroke="currentColor" strokeWidth="2"
+  <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2"
     strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
     <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A5.5 5.5 0 0 0 7 8c0 1.3.5 2.6 1.5 3.5.8.8 1.3 1.5 1.5 2.5" />
     <line x1="9" y1="18" x2="15" y2="18" />
@@ -143,7 +143,7 @@ const BulbIcon = (
 );
 
 const RocketIcon = (
-  <svg width="17" height="17" fill="none" stroke="currentColor" strokeWidth="2"
+  <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2"
     strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
     <path d="M4.5 16.5c-1.5 1.25-2.5 3.5-2.5 3.5s2.25-1 3.5-2.5M12 12l-7.5 7.5" />
     <path d="M10 2c-.5 2 1 4 3 4.5C18.5 7.5 22 12 22 12s-4.5 3.5-5.5 9c-.5-2-2.5-3.5-4.5-3M10 2S6.5 5.5 1 6c2 .5 3.5 2.5 3 4.5" />
@@ -161,9 +161,9 @@ export default function HeroRightContent() {
       style={{
         position: "relative",
         width: "100%",
-        /* Fill the full available column height */
-        height: "100%",
-        minHeight: "400px",
+        /* Height driven by aspect-ratio of inner stage; min keeps it usable */
+        aspectRatio: "1 / 1",
+        maxHeight: "min(74vh, 680px)",
         opacity: 0,
         overflow: "visible",
       }}
@@ -172,15 +172,15 @@ export default function HeroRightContent() {
       <style dangerouslySetInnerHTML={{ __html: `
         @keyframes genesis-float-1 {
           0%, 100% { transform: translateY(0px); }
-          50%       { transform: translateY(-4px); }
+          50%       { transform: translateY(-5px); }
         }
         @keyframes genesis-float-2 {
           0%, 100% { transform: translateY(0px); }
-          50%       { transform: translateY(-4px); }
+          50%       { transform: translateY(-5px); }
         }
         @keyframes genesis-float-3 {
           0%, 100% { transform: translateY(0px); }
-          50%       { transform: translateY(-4px); }
+          50%       { transform: translateY(-5px); }
         }
 
         .genesis-float-1 { animation: genesis-float-1 5s ease-in-out infinite; }
@@ -237,9 +237,14 @@ export default function HeroRightContent() {
           will-change: transform;
         }
 
-        /* Responsive tablet */
-        @media (max-width: 1100px) {
-          .genesis-card { width: 190px !important; }
+        /* Laptop — slightly narrower cards */
+        @media (max-width: 1280px) {
+          .genesis-card { width: clamp(148px, 12.5vw, 190px) !important; }
+        }
+
+        /* Tablet */
+        @media (max-width: 1024px) {
+          .genesis-card { width: clamp(140px, 19vw, 182px) !important; }
         }
 
         /* Mobile: hide desktop cards/orbit */
@@ -249,29 +254,18 @@ export default function HeroRightContent() {
         }
       `}} />
 
-      {/* ── Background atmosphere — visible blue/cyan glow ── */}
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          background:
-            "radial-gradient(ellipse 70% 65% at 68% 52%, rgba(30,100,200,0.22) 0%, rgba(34,211,238,0.08) 45%, transparent 72%)",
-          pointerEvents: "none",
-          zIndex: 0,
-        }}
-      />
 
-      {/* ── Artwork — fills the full visual stage ── */}
+
+      {/* ── Artwork ── */}
       <div
         className="genesis-parallax-art"
         style={{
           position: "absolute",
-          /* Shift artwork right but not too far: left:5% keeps character
-             close to the cards without pushing it out of frame */
-          top: "-10%",
-          right: "-3%",
-          bottom: "-5%",
-          left: "0",
+          /* Extend slightly beyond stage edges to fill viewport impression */
+          top: "-8%",
+          right: "-4%",
+          bottom: "-4%",
+          left: "-2%",
           zIndex: 2,
           pointerEvents: "none",
         }}
@@ -281,17 +275,20 @@ export default function HeroRightContent() {
           alt="Developer with laptop"
           fill
           priority
-          sizes="(max-width: 767px) 100vw, (max-width: 1100px) 60vw, 50vw"
+          sizes="(max-width: 767px) 100vw, (max-width: 1280px) 55vw, 48vw"
           className="select-none"
           style={{
             objectFit: "contain",
-            /* Right-bias: character shows prominently on the right */
-            objectPosition: "80% bottom",
-            /* Gentle radial fade centred on the character's right-of-centre position */
+            /* Character anchored bottom-right */
+            objectPosition: "80% 90%",
+            /*
+             * Radial mask: opaque where character sits (right/bottom),
+             * fades out towards top-left so no hard edge shows.
+             */
             maskImage:
-              "radial-gradient(ellipse 90% 88% at 65% 56%, black 48%, transparent 100%)",
+              "radial-gradient(ellipse 75% 75% at 70% 72%, black 25%, transparent 100%)",
             WebkitMaskImage:
-              "radial-gradient(ellipse 90% 88% at 65% 56%, black 48%, transparent 100%)",
+              "radial-gradient(ellipse 75% 75% at 70% 72%, black 25%, transparent 100%)",
           }}
         />
       </div>
@@ -346,18 +343,7 @@ export default function HeroRightContent() {
           overflow: "visible",
         }}
       >
-        {/*
-         * Cards sit on the LEFT of the visual stage, close to where the
-         * character's left side is. This creates the diagonal stack seen
-         * in the reference screenshot.
-         *
-         * "top" is % of stage height; "left" is % of stage width.
-         * The character image is right-aligned, so its visible body
-         * starts approximately at 30-35% from the stage left edge.
-         * Cards at left: 2-20% sit just to the LEFT of the character body.
-         */}
-
-        {/* Clean Code — upper area, near character head/shoulder zone */}
+        {/* Clean Code — upper right area, near character head */}
         <FloatingCard
           title="Clean Code"
           line1="Simple. Readable."
@@ -365,11 +351,11 @@ export default function HeroRightContent() {
           accentColor="cyan"
           floatClass=""
           parallaxClass="genesis-parallax-card-1"
-          style={{ top: "10%", left: "42%" }}
+          style={{ top: "9%", left: "40%" }}
           icon={CodeIcon}
         />
 
-        {/* Problem Solver — middle, furthest left */}
+        {/* Problem Solver — middle, slightly left */}
         <FloatingCard
           title="Problem Solver"
           line1="Break it down."
@@ -377,11 +363,11 @@ export default function HeroRightContent() {
           accentColor="teal"
           floatClass=""
           parallaxClass="genesis-parallax-card-2"
-          style={{ top: "40%", left: "20%" }}
+          style={{ top: "40%", left: "18%" }}
           icon={BulbIcon}
         />
 
-        {/* Always Learning — lower, between the two horizontally */}
+        {/* Always Learning — lower */}
         <FloatingCard
           title="Always Learning"
           line1="Curious mind."
@@ -389,7 +375,7 @@ export default function HeroRightContent() {
           accentColor="purple"
           floatClass=""
           parallaxClass="genesis-parallax-card-3"
-          style={{ top: "64%", left: "30%" }}
+          style={{ top: "63%", left: "28%" }}
           icon={RocketIcon}
         />
       </div>

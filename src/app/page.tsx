@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import dynamic from "next/dynamic";
 
 const ChapterOne = dynamic(() => import("@/chapters/chapter-1/ChapterOne"), { ssr: false });
-const ChapterTwo = dynamic(() => import("@/chapters/chapter-2/ChapterTwo"), { ssr: false });
+// ChapterTwo import removed
 const ChapterThree = dynamic(() => import("@/chapters/chapter-3/ChapterThree"), { ssr: false });
 const ChapterFour = dynamic(() => import("@/chapters/chapter-4/ChapterFour"), { ssr: false });
 const ChapterFive = dynamic(() => import("@/chapters/chapter-5/ChapterFive"), { ssr: false });
@@ -18,7 +18,7 @@ import { GlobalNavigationDrawer } from "@/components/system/Shell/GlobalNavigati
 import { TransitionLayer, useTransitionLayer } from "@/components/system/TransitionLayer";
 
 export default function Home() {
-  type ChapterType = "chapter-1" | "chapter-2" | "chapter-3" | "chapter-4" | "chapter-5" | "chapter-6" | "chapter-7" | "chapter-8" | "epilogue";
+  type ChapterType = "chapter-1" | "chapter-3" | "chapter-4" | "chapter-5" | "chapter-6" | "chapter-7" | "chapter-8" | "epilogue";
 
   const [activeChapter, setActiveChapter] = useState<ChapterType>("chapter-1");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -146,10 +146,6 @@ export default function Home() {
     return () => document.removeEventListener("click", handleGlobalClick);
   }, [activeChapter]);
 
-  const handleTransitionToChapterThree = () => {
-    handleGlobalNavigate("chapter-3");
-  };
-
   const handleReturnToChapterThree = () => {
     handleGlobalNavigate("chapter-3");
   };
@@ -179,11 +175,7 @@ export default function Home() {
 
       <main id="main-content" className={`w-full h-screen bg-black relative ${activeChapter === "chapter-7" ? "overflow-y-auto" : "overflow-hidden"}`}>
         {activeChapter === "chapter-1" && (
-          <ChapterOne onComplete={() => handleGlobalNavigate("chapter-2")} />
-        )}
-
-        {activeChapter === "chapter-2" && (
-          <ChapterTwo onTransition={handleTransitionToChapterThree} />
+          <ChapterOne onComplete={() => handleGlobalNavigate("chapter-3")} />
         )}
 
         {activeChapter === "chapter-3" && <ChapterThree />}
