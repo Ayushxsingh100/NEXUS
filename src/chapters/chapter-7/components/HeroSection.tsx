@@ -16,6 +16,61 @@ const TECH_LABELS = [
   { name: "PostgreSQL", color: "#4ade80", bottom: "45%", right: "-4%" },
 ];
 
+function FloatingTechLabel({
+  label,
+  index,
+  mouseOffset,
+}: {
+  label: (typeof TECH_LABELS)[0];
+  index: number;
+  mouseOffset: { x: number; y: number };
+}) {
+  const [hovered, setHovered] = useState(false);
+
+  return (
+    <div
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{
+        position: "absolute",
+        top: label.top,
+        bottom: label.bottom,
+        left: label.left,
+        right: label.right,
+        display: "flex",
+        alignItems: "center",
+        gap: "6px",
+        fontSize: "10px",
+        fontWeight: 600,
+        fontFamily: "'Poppins', sans-serif",
+        color: hovered ? "#ffffff" : "#cbd5e1",
+        background: "transparent",
+        border: "none",
+        padding: "0px",
+        letterSpacing: "0.05em",
+        zIndex: 3,
+        transform: `translate(${mouseOffset.x * (0.3 + index * 0.1)}px, ${mouseOffset.y * (0.3 + index * 0.1)}px) scale(${hovered ? 1.08 : 1})`,
+        textShadow: hovered ? `0 0 8px ${label.color}80` : "none",
+        transition: "transform 250ms ease-out, color 200ms ease, text-shadow 200ms ease",
+        cursor: "default",
+        userSelect: "none",
+      }}
+    >
+      <span
+        style={{
+          width: "5px",
+          height: "5px",
+          borderRadius: "50%",
+          background: label.color,
+          boxShadow: `0 0 6px ${label.color}`,
+          flexShrink: 0,
+        }}
+      />
+      {label.name}
+    </div>
+  );
+}
+
 export default function HeroSection({ onReturn }: HeroSectionProps) {
   const [mounted, setMounted] = useState(false);
   const [mouseOffset, setMouseOffset] = useState({ x: 0, y: 0 });
@@ -52,26 +107,6 @@ export default function HeroSection({ onReturn }: HeroSectionProps) {
         overflow: "hidden",
       }}
     >
-      {/* Background blueprint grid */}
-      <div
-        aria-hidden="true"
-        style={{
-          position: "absolute",
-          inset: 0,
-          backgroundImage: `
-            linear-gradient(rgba(34, 211, 238, 0.03) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(34, 211, 238, 0.03) 1px, transparent 1px)
-          `,
-          backgroundSize: "40px 40px",
-          backgroundPosition: "center",
-          maskImage: "radial-gradient(circle 600px at center, black 40%, transparent 100%)",
-          WebkitMaskImage: "radial-gradient(circle 600px at center, black 40%, transparent 100%)",
-          pointerEvents: "none",
-          transform: `translate(${mouseOffset.x * -0.3}px, ${mouseOffset.y * -0.3}px)`,
-          transition: "transform 250ms ease-out",
-          zIndex: 0,
-        }}
-      />
 
       {/* Floating particles */}
       <div
@@ -194,30 +229,12 @@ export default function HeroSection({ onReturn }: HeroSectionProps) {
 
         {/* Floating tech labels with parallax offsets */}
         {TECH_LABELS.map((label, index) => (
-          <div
+          <FloatingTechLabel
             key={label.name}
-            style={{
-              position: "absolute",
-              top: label.top,
-              bottom: label.bottom,
-              left: label.left,
-              right: label.right,
-              fontSize: "9px",
-              fontFamily: "monospace",
-              color: label.color,
-              background: "rgba(2, 8, 20, 0.90)",
-              border: `1px solid ${label.color}25`,
-              borderRadius: "4px",
-              padding: "3px 8px",
-              letterSpacing: "0.08em",
-              zIndex: 3,
-              boxShadow: "0 4px 12px rgba(0,0,0,0.5)",
-              transform: `translate(${mouseOffset.x * (0.3 + index * 0.1)}px, ${mouseOffset.y * (0.3 + index * 0.1)}px)`,
-              transition: "transform 250ms ease-out",
-            }}
-          >
-            {label.name}
-          </div>
+            label={label}
+            index={index}
+            mouseOffset={mouseOffset}
+          />
         ))}
 
         {/* Circular portrait container */}
@@ -329,30 +346,41 @@ export default function HeroSection({ onReturn }: HeroSectionProps) {
             }
           }}
           style={{
-            marginTop: "28px",
-            background: "transparent",
-            border: "none",
-            color: "rgba(34, 211, 238, 0.70)",
-            fontSize: "9.5px",
-            fontWeight: 700,
-            letterSpacing: "0.18em",
+            marginTop: "36px",
+            background: "linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01))",
+            border: "1px solid rgba(255, 255, 255, 0.08)",
+            borderRadius: "999px",
+            color: "rgba(34, 211, 238, 0.85)",
+            fontSize: "10px",
+            fontWeight: 600,
+            letterSpacing: "0.14em",
             textTransform: "uppercase",
+            padding: "10px 24px",
             cursor: "pointer",
             fontFamily: "'Poppins', sans-serif",
-            transition: "all 250ms ease",
+            transition: "all 300ms cubic-bezier(0.16, 1, 0.3, 1)",
             display: "inline-flex",
             alignItems: "center",
             gap: "8px",
+            boxShadow: "0 4px 20px rgba(0,0,0,0.3)",
+            backdropFilter: "blur(8px)",
+            WebkitBackdropFilter: "blur(8px)",
           }}
           onMouseEnter={(e) => {
             const el = e.currentTarget;
-            el.style.color = "#22d3ee";
-            el.style.transform = "translateY(2px)";
+            el.style.borderColor = "rgba(34, 211, 238, 0.40)";
+            el.style.background = "rgba(34, 211, 238, 0.06)";
+            el.style.color = "#ffffff";
+            el.style.boxShadow = "0 8px 30px rgba(34, 211, 238, 0.25)";
+            el.style.transform = "translateY(2px) scale(1.03)";
           }}
           onMouseLeave={(e) => {
             const el = e.currentTarget;
-            el.style.color = "rgba(34, 211, 238, 0.70)";
-            el.style.transform = "translateY(0)";
+            el.style.borderColor = "rgba(255, 255, 255, 0.08)";
+            el.style.background = "linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01))";
+            el.style.color = "rgba(34, 211, 238, 0.85)";
+            el.style.boxShadow = "0 4px 20px rgba(0,0,0,0.3)";
+            el.style.transform = "translateY(0) scale(1)";
           }}
         >
           SCROLL TO know about me

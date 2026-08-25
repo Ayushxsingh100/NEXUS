@@ -174,9 +174,70 @@ export default function ChapterEight({ onReturn, onCompleteJourney }: ChapterEig
           {/* Return trigger */}
           <button
             onClick={handleReturnToHub}
-            className="text-zinc-600 hover:text-white/60 text-[9px] sm:text-[10px] tracking-[0.25em] font-mono pl-[0.25em] transition-colors duration-300 mt-2 mb-8 bg-transparent border-none outline-none cursor-pointer"
+            style={{
+              fontFamily: "'Poppins', sans-serif",
+              fontSize: "10.5px",
+              fontWeight: 500,
+              letterSpacing: "0.22em",
+              textTransform: "uppercase",
+              color: "rgba(255, 255, 255, 0.85)",
+              background: "linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(99, 102, 241, 0.04) 100%)",
+              border: "1px solid rgba(139, 92, 246, 0.22)",
+              borderRadius: "100px",
+              padding: "12px 32px",
+              cursor: "pointer",
+              transition: "all 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
+              backdropFilter: "blur(12px)",
+              WebkitBackdropFilter: "blur(12px)",
+              marginTop: "24px",
+              marginBottom: "36px",
+              boxShadow: "0 4px 20px rgba(139, 92, 246, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.05)",
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "10px",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.color = "#ffffff";
+              e.currentTarget.style.background = "linear-gradient(135deg, rgba(139, 92, 246, 0.2) 0%, rgba(99, 102, 241, 0.1) 100%)";
+              e.currentTarget.style.borderColor = "rgba(167, 139, 250, 0.6)";
+              e.currentTarget.style.boxShadow = "0 0 30px rgba(139, 92, 246, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.15)";
+              e.currentTarget.style.transform = "translateY(-2px) scale(1.02)";
+              const arrow = e.currentTarget.querySelector(".btn-arrow");
+              if (arrow) {
+                (arrow as HTMLElement).style.transform = "translateX(4px)";
+              }
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.color = "rgba(255, 255, 255, 0.85)";
+              e.currentTarget.style.background = "linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(99, 102, 241, 0.04) 100%)";
+              e.currentTarget.style.borderColor = "rgba(139, 92, 246, 0.22)";
+              e.currentTarget.style.boxShadow = "0 4px 20px rgba(139, 92, 246, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.05)";
+              e.currentTarget.style.transform = "translateY(0px) scale(1)";
+              const arrow = e.currentTarget.querySelector(".btn-arrow");
+              if (arrow) {
+                (arrow as HTMLElement).style.transform = "translateX(0px)";
+              }
+            }}
           >
-            [ RETURN TO THOUGHT HUB ]
+            <span>Return to Thought Hub</span>
+            <svg
+              className="btn-arrow"
+              width="12"
+              height="12"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              style={{
+                transition: "transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
+                color: "rgba(167, 139, 250, 0.8)",
+              }}
+            >
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
           </button>
         </div>
       )}

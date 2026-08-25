@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import AvailabilityPill from "./AvailabilityPill";
 import ContactLink from "./ContactLink";
 import ResumeButton from "./ResumeButton";
 import ContactForm from "./ContactForm";
@@ -85,27 +84,7 @@ export default function ContactStage({ onComplete }: ContactStageProps) {
         {/* ────── LEFT COLUMN ────── */}
         <div style={{ display: "flex", flexDirection: "column" }}>
 
-          {/* Chapter eyebrow */}
-          <p style={{
-            fontSize: "9.5px",
-            fontFamily: "'Poppins', sans-serif",
-            fontWeight: 600,
-            letterSpacing: "0.22em",
-            color: "rgba(167, 139, 250, 0.65)",
-            textTransform: "uppercase",
-            margin: "0 0 16px 0",
-            display: "flex",
-            alignItems: "center",
-            gap: "8px",
-          }}>
-            <span style={{ width: "18px", height: "1px", background: "rgba(167,139,250,0.4)", display: "inline-block", borderRadius: "2px" }} />
-            Chapter VIII — Legacy
-          </p>
 
-          {/* Availability pill */}
-          <div style={{ marginBottom: "26px" }}>
-            <AvailabilityPill />
-          </div>
 
           {/* Hero heading */}
           <h2 style={{
@@ -124,8 +103,9 @@ export default function ContactStage({ onComplete }: ContactStageProps) {
             fontFamily: "'Poppins', sans-serif",
             fontWeight: 700,
             letterSpacing: "-0.04em",
-            lineHeight: 1.06,
-            margin: "0 0 20px 0",
+            lineHeight: 1.15,
+            paddingBottom: "10px",
+            margin: "0 0 10px 0",
             background: "linear-gradient(125deg, #e9d5ff 0%, #c084fc 35%, #a855f7 65%, #7c3aed 100%)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
@@ -157,8 +137,8 @@ export default function ContactStage({ onComplete }: ContactStageProps) {
           {/* Contact links — with subtle row separators */}
           <div style={{ display: "flex", flexDirection: "column" }}>
             {[
-              { href: "mailto:singh.ayush679@gmail.com", label: "singh.ayush679@gmail.com", sublabel: "Email", icon: <EmailIcon />, external: false },
-              { href: "https://linkedin.com/in/ayushxsingh100", label: "Ayush Singh", sublabel: "LinkedIn", icon: <LinkedInIcon /> },
+              { href: "mailto:ayushxsingh.work@gmail.com", label: "ayushxsingh.work@gmail.com", sublabel: "Email", icon: <EmailIcon />, external: false },
+              { href: "https://www.linkedin.com/in/ayush-kumar-singh-b46468342", label: "Ayush Singh", sublabel: "LinkedIn", icon: <LinkedInIcon /> },
               { href: "https://github.com/Ayushxsingh100", label: "Ayushxsingh100", sublabel: "GitHub", icon: <GitHubIcon /> },
             ].map((link, i) => (
               <div key={i}>

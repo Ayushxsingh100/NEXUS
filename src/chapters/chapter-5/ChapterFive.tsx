@@ -10,22 +10,13 @@ interface ChapterFiveProps {
   onReturn: () => void;
 }
 
-export default function ChapterFive({ onReturn }: ChapterFiveProps) {
+export default function ChapterFive({ onReturn: _onReturn }: ChapterFiveProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   /* ── Entrance: fade in from black ── */
   useGSAP(() => {
     gsap.to("#black-screen", { opacity: 0, duration: 1.5, ease: "power2.out" });
   }, { scope: containerRef, dependencies: [] });
-
-  const handleReturnToHub = () => {
-    gsap.to(containerRef.current, {
-      opacity: 0,
-      duration: 1.0,
-      ease: "power2.inOut",
-      onComplete: onReturn,
-    });
-  };
 
   return (
     <div
@@ -91,41 +82,6 @@ export default function ChapterFive({ onReturn }: ChapterFiveProps) {
       >
         {/* Chapter 5 — The Evolution of an Engineer */}
         <EngineeringStory />
-
-        {/* ── Return button ── */}
-        <div
-          style={{
-            width: "100%",
-            display: "flex",
-            justifyContent: "center",
-            paddingBottom: "clamp(48px, 8vh, 96px)",
-          }}
-        >
-          <button
-            onClick={handleReturnToHub}
-            style={{
-              fontFamily: "'Poppins', sans-serif",
-              fontSize: "9px",
-              fontWeight: 500,
-              letterSpacing: "0.25em",
-              textTransform: "uppercase" as const,
-              color: "rgba(255,255,255,0.22)",
-              background: "none",
-              border: "none",
-              cursor: "pointer",
-              transition: "color 0.25s ease",
-              padding: "0",
-            }}
-            onMouseEnter={(e) =>
-              (e.currentTarget.style.color = "rgba(255,255,255,0.55)")
-            }
-            onMouseLeave={(e) =>
-              (e.currentTarget.style.color = "rgba(255,255,255,0.22)")
-            }
-          >
-            [ RETURN TO THOUGHT HUB ]
-          </button>
-        </div>
       </main>
 
       {/* ── Shutter Blackout Overlay ── */}

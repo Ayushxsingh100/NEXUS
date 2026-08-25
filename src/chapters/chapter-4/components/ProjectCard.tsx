@@ -45,6 +45,7 @@ export interface ProjectData {
   logoWidth?: string;
   logoHeight?: string;
   blendMode?: string;
+  logoScale?: number;
 }
 
 /* ─── Status chip ── */
@@ -192,10 +193,11 @@ export function TopProjectCard({ project }: { project: ProjectData }) {
               objectFit: "contain",
               objectPosition: "center",
               borderRadius: "inherit",
+              transform: project.logoScale ? `scale(${project.logoScale})` : undefined,
               filter: hov
                 ? `drop-shadow(0 8px 20px ${project.accentColor}55)`
                 : `drop-shadow(0 4px 12px ${project.accentColor}38)`,
-              transition: `filter ${T.ease}`,
+              transition: `filter ${T.ease}, transform ${T.ease}`,
             }}
             priority
           />
@@ -347,10 +349,10 @@ export function FeaturedProjectCard({ project }: { project: ProjectData }) {
           {/* Icon in bordered container */}
           <div
             style={{
-              width: "52px", height: "52px",
+              width: "64px", height: "64px",
               background: "#ffffff",
               border: "1px solid rgba(255,255,255,0.08)",
-              borderRadius: "12px",
+              borderRadius: "14px",
               display: "flex", alignItems: "center", justifyContent: "center",
               marginBottom: "18px", flexShrink: 0,
               position: "relative",
@@ -359,9 +361,9 @@ export function FeaturedProjectCard({ project }: { project: ProjectData }) {
               overflow: "hidden",
             }}
           >
-            <Image src={project.artSrc} alt={project.name} fill sizes="52px"
+            <Image src={project.artSrc} alt={project.name} fill sizes="64px"
               unoptimized={true}
-              style={{ objectFit: "contain", padding: "10px", borderRadius: "inherit" }} priority />
+              style={{ objectFit: "contain", padding: "0px", borderRadius: "inherit" }} priority />
           </div>
 
           {/* Category label */}
