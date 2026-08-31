@@ -118,7 +118,7 @@ const CHAPTERS: ChapterDef[] = [
     accent: "#4ade80",
     accentB: "#2dd4bf",
     glow: "rgba(74,222,128,0.28)",
-    image: "/media/experience/Crobstacle/Crobstacle.png",
+    image: "/media/Experience/Crobstacle/Crobstacle.png",
     imageFit: "fill",
     imageAspect: "3 / 2",
     imageCaption: "Production development workspace together with my internship appreciation certificate.",

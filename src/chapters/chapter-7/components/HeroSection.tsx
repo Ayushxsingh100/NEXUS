@@ -160,7 +160,7 @@ export default function HeroSection({ onReturn }: HeroSectionProps) {
           />
 
           <Image
-            src="/media/ayush_image.png"
+            src="/media/Ayush_image.png"
             alt="Ayush Singh"
             fill
             sizes="(max-width: 768px) 300px, 450px"

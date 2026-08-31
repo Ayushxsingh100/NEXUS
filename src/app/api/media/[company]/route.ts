@@ -21,7 +21,7 @@ export async function GET(
       );
     }
 
-    const dirPath = path.join(process.cwd(), "public", "media", "experience", company);
+    const dirPath = path.join(process.cwd(), "public", "media", "Experience", company);
 
     if (!fs.existsSync(dirPath)) {
       return NextResponse.json([]);
@@ -35,7 +35,7 @@ export async function GET(
     // Filter for typical web-compatible image extensions
     const images = files
       .filter((file) => /\.(png|jpe?g|webp|gif|svg)$/i.test(file))
-      .map((file) => `/media/experience/${company}/${file}`);
+      .map((file) => `/media/Experience/${company}/${file}`);
 
     return NextResponse.json(images);
   } catch (error) {
