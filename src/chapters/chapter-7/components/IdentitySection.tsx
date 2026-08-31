@@ -50,7 +50,7 @@ export default function IdentitySection() {
           Philosophy of Action
         </Label>
         <Paragraph className="text-xs sm:text-sm text-zinc-400 leading-relaxed font-light pl-0.5">
-          "I build systems that value speed, correctness, and transparency. I believe that true software engineering sits at the intersection of deep mechanical understanding and structured logical architecture. Every line of code should contribute directly to system longevity."
+          &ldquo;I build systems that value speed, correctness, and transparency. I believe that true software engineering sits at the intersection of deep mechanical understanding and structured logical architecture. Every line of code should contribute directly to system longevity.&rdquo;
         </Paragraph>
       </div>
     </div>

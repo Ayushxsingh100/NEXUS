@@ -7,7 +7,20 @@ interface HeroSectionProps {
   onReturn: () => void;
 }
 
-
+const STATIC_PARTICLES = [
+  { width: "3.5px", height: "3.5px", top: "12%", left: "45%", opacity: 0.35, animation: "ch7FloatParticle 11s infinite ease-in-out", animationDelay: "1.2s", background: "#22d3ee" },
+  { width: "2.2px", height: "2.2px", top: "25%", left: "75%", opacity: 0.15, animation: "ch7FloatParticle 7.5s infinite ease-in-out", animationDelay: "0.5s", background: "#3b82f6" },
+  { width: "4.1px", height: "4.1px", top: "68%", left: "15%", opacity: 0.42, animation: "ch7FloatParticle 13s infinite ease-in-out", animationDelay: "3.1s", background: "#22d3ee" },
+  { width: "2.8px", height: "2.8px", top: "50%", left: "82%", opacity: 0.28, animation: "ch7FloatParticle 9.2s infinite ease-in-out", animationDelay: "2.0s", background: "#3b82f6" },
+  { width: "3.0px", height: "3.0px", top: "85%", left: "38%", opacity: 0.30, animation: "ch7FloatParticle 10.4s infinite ease-in-out", animationDelay: "4.3s", background: "#22d3ee" },
+  { width: "2.5px", height: "2.5px", top: "33%", left: "22%", opacity: 0.21, animation: "ch7FloatParticle 8.1s infinite ease-in-out", animationDelay: "1.8s", background: "#3b82f6" },
+  { width: "3.9px", height: "3.9px", top: "18%", left: "62%", opacity: 0.38, animation: "ch7FloatParticle 12.2s infinite ease-in-out", animationDelay: "0.2s", background: "#22d3ee" },
+  { width: "2.1px", height: "2.1px", top: "72%", left: "55%", opacity: 0.12, animation: "ch7FloatParticle 6.8s infinite ease-in-out", animationDelay: "2.7s", background: "#3b82f6" },
+  { width: "4.5px", height: "4.5px", top: "42%", left: "88%", opacity: 0.48, animation: "ch7FloatParticle 14.5s infinite ease-in-out", animationDelay: "3.9s", background: "#22d3ee" },
+  { width: "2.7px", height: "2.7px", top: "60%", left: "67%", opacity: 0.25, animation: "ch7FloatParticle 8.7s infinite ease-in-out", animationDelay: "1.1s", background: "#3b82f6" },
+  { width: "3.2px", height: "3.2px", top: "80%", left: "78%", opacity: 0.33, animation: "ch7FloatParticle 11.8s infinite ease-in-out", animationDelay: "4.9s", background: "#22d3ee" },
+  { width: "2.4px", height: "2.4px", top: "30%", left: "92%", opacity: 0.18, animation: "ch7FloatParticle 7.1s infinite ease-in-out", animationDelay: "2.4s", background: "#3b82f6" }
+];
 
 export default function HeroSection({ onReturn }: HeroSectionProps) {
   const [mounted, setMounted] = useState(false);
@@ -15,7 +28,9 @@ export default function HeroSection({ onReturn }: HeroSectionProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    setMounted(true);
+    const timer = setTimeout(() => {
+      setMounted(true);
+    }, 50);
 
     const handleMouseMove = (e: MouseEvent) => {
       if (window.innerWidth < 768) return; // Disable parallax on mobile
@@ -26,7 +41,10 @@ export default function HeroSection({ onReturn }: HeroSectionProps) {
     };
 
     window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener("mousemove", handleMouseMove);
+    };
   }, []);
 
   return (
@@ -57,20 +75,13 @@ export default function HeroSection({ onReturn }: HeroSectionProps) {
           zIndex: 0,
         }}
       >
-        {[...Array(12)].map((_, i) => (
+        {STATIC_PARTICLES.map((p, i) => (
           <div
             key={i}
             style={{
               position: "absolute",
-              width: `${Math.random() * 3 + 2}px`,
-              height: `${Math.random() * 3 + 2}px`,
               borderRadius: "50%",
-              background: i % 2 === 0 ? "#22d3ee" : "#3b82f6",
-              top: `${Math.random() * 80 + 10}%`,
-              left: `${Math.random() * 80 + 10}%`,
-              opacity: Math.random() * 0.4 + 0.1,
-              animation: `ch7FloatParticle ${Math.random() * 8 + 6}s infinite ease-in-out`,
-              animationDelay: `${Math.random() * 5}s`,
+              ...p,
             }}
           />
         ))}

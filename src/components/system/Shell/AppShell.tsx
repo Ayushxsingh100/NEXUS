@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { PageTransitionProvider, usePageTransition } from "@/context/PageTransitionContext";
 import { GlobalNavigationDrawer } from "@/components/system/Shell/GlobalNavigationDrawer";
@@ -27,11 +27,32 @@ const CHAPTER_TO_PATH: Record<string, string> = {
   "epilogue": "/epilogue",
 };
 
+const CHAPTER_TITLES: Record<string, string> = {
+  "chapter-1": "Genesis",
+  "chapter-3": "Thought Hub",
+  "chapter-4": "Systems Topology",
+  "chapter-5": "Interactive Timeline",
+  "chapter-6": "Knowledge Library",
+  "chapter-7": "Beyond The Code",
+  "chapter-8": "Communication Hub",
+  "epilogue": "The Signature",
+};
+
 function InnerAppShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const { isMenuOpen, setIsMenuOpen, navigateTo } = usePageTransition();
 
   const activeChapter = PATH_TO_CHAPTER[pathname] || "chapter-1";
+
+  useEffect(() => {
+    const chapterName = CHAPTER_TITLES[activeChapter];
+    if (chapterName) {
+      document.title = `Project Nexus — ${chapterName}`;
+    } else {
+      document.title = "Project Nexus";
+    }
+  }, [activeChapter]);
+
 
   const toggleMenu = () => {
     setIsMenuOpen((prev) => !prev);
