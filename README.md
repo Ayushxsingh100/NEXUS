@@ -1,5 +1,5 @@
 <div align="center">
-
+<img src="./Hero.png"  alt="Projects Node" />
 # PROJECT NEXUS
 
 ### The Architecture of Thought
