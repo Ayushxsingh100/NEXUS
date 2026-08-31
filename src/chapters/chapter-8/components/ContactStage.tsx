@@ -49,7 +49,7 @@ export default function ContactStage({ onComplete }: ContactStageProps) {
       <div aria-hidden style={{
         position: "absolute", top: "30%", right: "-2%", transform: "translateY(-50%)",
         width: "560px", height: "560px", borderRadius: "50%",
-        background: "radial-gradient(circle, rgba(139, 92, 246, 0.18) 0%, rgba(167, 105, 244, 0.08) 40%, transparent 70%)",
+        background: "radial-gradient(circle, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0.01) 40%, transparent 70%)",
         filter: "blur(90px)", pointerEvents: "none", zIndex: 0,
       }} />
 
@@ -57,7 +57,7 @@ export default function ContactStage({ onComplete }: ContactStageProps) {
       <div aria-hidden style={{
         position: "absolute", top: "-10%", right: "20%",
         width: "280px", height: "280px", borderRadius: "50%",
-        background: "radial-gradient(circle, rgba(192, 132, 252, 0.1) 0%, transparent 70%)",
+        background: "radial-gradient(circle, rgba(255, 255, 255, 0.01) 0%, transparent 70%)",
         filter: "blur(60px)", pointerEvents: "none", zIndex: 0,
       }} />
 
@@ -65,7 +65,7 @@ export default function ContactStage({ onComplete }: ContactStageProps) {
       <div aria-hidden style={{
         position: "absolute", bottom: "10%", left: "-8%",
         width: "350px", height: "350px", borderRadius: "50%",
-        background: "radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, transparent 70%)",
+        background: "radial-gradient(circle, rgba(255, 255, 255, 0.01) 0%, transparent 70%)",
         filter: "blur(70px)", pointerEvents: "none", zIndex: 0,
       }} />
 
@@ -106,7 +106,7 @@ export default function ContactStage({ onComplete }: ContactStageProps) {
             lineHeight: 1.15,
             paddingBottom: "10px",
             margin: "0 0 10px 0",
-            background: "linear-gradient(125deg, #e9d5ff 0%, #c084fc 35%, #a855f7 65%, #7c3aed 100%)",
+            background: "linear-gradient(125deg, #ffffff 0%, #d4d4d8 35%, #a1a1aa 70%, #71717a 100%)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
             backgroundClip: "text",
@@ -130,7 +130,7 @@ export default function ContactStage({ onComplete }: ContactStageProps) {
           {/* Gradient divider */}
           <div style={{
             width: "36px", height: "1.5px",
-            background: "linear-gradient(90deg, rgba(192,132,252,0.6), rgba(139,92,246,0.15))",
+            background: "linear-gradient(90deg, rgba(255,255,255,0.4), rgba(255,255,255,0.08))",
             borderRadius: "2px", marginBottom: "20px",
           }} />
 
@@ -168,9 +168,9 @@ export default function ContactStage({ onComplete }: ContactStageProps) {
               "0 2px 0 rgba(255,255,255,0.06) inset",           /* top shine */
               "0 -1px 0 rgba(0,0,0,0.4) inset",                  /* bottom shadow */
               "0 1px 0 rgba(255,255,255,0.04) inset",
-              "0 24px 60px rgba(0,0,0,0.6)",
-              "0 8px 24px rgba(0,0,0,0.4)",
-              "0 0 80px rgba(139,92,246,0.08)",
+              "0 24px 60px rgba(0,0,0,0.7)",
+              "0 8px 24px rgba(0,0,0,0.5)",
+              "0 0 80px rgba(0,0,0,0.6)",
             ].join(", "),
             transition: "transform 500ms cubic-bezier(0.16,1,0.3,1), box-shadow 500ms cubic-bezier(0.16,1,0.3,1)",
           }}
@@ -179,21 +179,13 @@ export default function ContactStage({ onComplete }: ContactStageProps) {
           <div style={{
             position: "absolute", inset: 0,
             background: [
-              "linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 50%, rgba(139,92,246,0.04) 100%)",
+              "linear-gradient(145deg, rgba(0,0,0,0.95) 0%, rgba(10,10,10,0.85) 100%)",
             ].join(", "),
             backdropFilter: "blur(40px)",
             WebkitBackdropFilter: "blur(40px)",
             borderRadius: "28px",
-            border: "1px solid rgba(255,255,255,0.09)",
+            border: "1px solid rgba(255,255,255,0.08)",
             zIndex: 0,
-          }} />
-
-          {/* Inner purple glow at top-right */}
-          <div aria-hidden style={{
-            position: "absolute", top: "-30px", right: "-30px",
-            width: "180px", height: "180px", borderRadius: "50%",
-            background: "radial-gradient(circle, rgba(139,92,246,0.2) 0%, transparent 70%)",
-            filter: "blur(30px)", pointerEvents: "none", zIndex: 1,
           }} />
 
           {/* Card content */}
@@ -227,7 +219,7 @@ export default function ContactStage({ onComplete }: ContactStageProps) {
                 fontSize: "10.5px",
                 fontFamily: "'Poppins', sans-serif",
                 fontWeight: 500,
-                color: "rgba(255,255,255,0.22)",
+                color: "rgba(255,255,255,0.45)",
                 letterSpacing: "0.08em",
                 margin: 0,
               }}>
@@ -241,7 +233,7 @@ export default function ContactStage({ onComplete }: ContactStageProps) {
             {/* Top gradient accent */}
             <div style={{
               height: "1px",
-              background: "linear-gradient(90deg, transparent 5%, rgba(167,139,250,0.45) 30%, rgba(196,181,253,0.45) 70%, transparent 95%)",
+              background: "linear-gradient(90deg, transparent 5%, rgba(255,255,255,0.15) 30%, rgba(255,255,255,0.15) 70%, transparent 95%)",
             }} />
 
             {/* Form */}
@@ -263,9 +255,9 @@ export default function ContactStage({ onComplete }: ContactStageProps) {
             0 2px 0 rgba(255,255,255,0.07) inset,
             0 -1px 0 rgba(0,0,0,0.4) inset,
             0 1px 0 rgba(255,255,255,0.05) inset,
-            0 32px 80px rgba(0,0,0,0.7),
-            0 12px 32px rgba(0,0,0,0.45),
-            0 0 100px rgba(139,92,246,0.13) !important;
+            0 32px 80px rgba(0,0,0,0.85),
+            0 12px 32px rgba(0,0,0,0.5),
+            0 0 100px rgba(0,0,0,0.8) !important;
         }
       ` }} />
     </div>

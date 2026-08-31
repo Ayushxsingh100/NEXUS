@@ -7,69 +7,7 @@ interface HeroSectionProps {
   onReturn: () => void;
 }
 
-const TECH_LABELS = [
-  { name: "Java", color: "#3b82f6", top: "12%", left: "10%" },
-  { name: "Next.js", color: "#ffffff", top: "18%", right: "8%" },
-  { name: "TypeScript", color: "#22d3ee", bottom: "25%", left: "6%" },
-  { name: "AWS", color: "#fb923c", bottom: "22%", right: "12%" },
-  { name: "Cloud", color: "#3b82f6", top: "48%", left: "-2%" },
-  { name: "PostgreSQL", color: "#4ade80", bottom: "45%", right: "-4%" },
-];
 
-function FloatingTechLabel({
-  label,
-  index,
-  mouseOffset,
-}: {
-  label: (typeof TECH_LABELS)[0];
-  index: number;
-  mouseOffset: { x: number; y: number };
-}) {
-  const [hovered, setHovered] = useState(false);
-
-  return (
-    <div
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      style={{
-        position: "absolute",
-        top: label.top,
-        bottom: label.bottom,
-        left: label.left,
-        right: label.right,
-        display: "flex",
-        alignItems: "center",
-        gap: "6px",
-        fontSize: "10px",
-        fontWeight: 600,
-        fontFamily: "'Poppins', sans-serif",
-        color: hovered ? "#ffffff" : "#cbd5e1",
-        background: "transparent",
-        border: "none",
-        padding: "0px",
-        letterSpacing: "0.05em",
-        zIndex: 3,
-        transform: `translate(${mouseOffset.x * (0.3 + index * 0.1)}px, ${mouseOffset.y * (0.3 + index * 0.1)}px) scale(${hovered ? 1.08 : 1})`,
-        textShadow: hovered ? `0 0 8px ${label.color}80` : "none",
-        transition: "transform 250ms ease-out, color 200ms ease, text-shadow 200ms ease",
-        cursor: "default",
-        userSelect: "none",
-      }}
-    >
-      <span
-        style={{
-          width: "5px",
-          height: "5px",
-          borderRadius: "50%",
-          background: label.color,
-          boxShadow: `0 0 6px ${label.color}`,
-          flexShrink: 0,
-        }}
-      />
-      {label.name}
-    </div>
-  );
-}
 
 export default function HeroSection({ onReturn }: HeroSectionProps) {
   const [mounted, setMounted] = useState(false);
@@ -172,70 +110,9 @@ export default function HeroSection({ onReturn }: HeroSectionProps) {
           transitionDuration: "1s, 1s, 250ms",
         }}
       >
-        {/* Rotating orbit rings */}
-        <div
-          aria-hidden="true"
-          style={{
-            position: "absolute",
-            width: "116%",
-            height: "116%",
-            borderRadius: "50%",
-            border: "1px dashed rgba(34, 211, 238, 0.18)",
-            animation: "ch7Spin 40s linear infinite",
-            transform: `translate(${mouseOffset.x * 0.2}px, ${mouseOffset.y * 0.2}px)`,
-            transition: "transform 250ms ease-out",
-          }}
-        />
-        <div
-          aria-hidden="true"
-          style={{
-            position: "absolute",
-            width: "108%",
-            height: "108%",
-            borderRadius: "50%",
-            border: "1px dashed rgba(59, 130, 246, 0.12)",
-            animation: "ch7SpinCounter 30s linear infinite",
-            transform: `translate(${mouseOffset.x * -0.15}px, ${mouseOffset.y * -0.15}px)`,
-            transition: "transform 250ms ease-out",
-          }}
-        />
 
-        {/* Blueprint construction ticks & circles */}
-        <svg
-          aria-hidden="true"
-          viewBox="0 0 100 100"
-          style={{
-            position: "absolute",
-            inset: "-10%",
-            width: "120%",
-            height: "120%",
-            opacity: 0.22,
-            pointerEvents: "none",
-          }}
-        >
-          {/* Corner brackets */}
-          <path d="M 5 5 H 12 M 5 5 V 12" stroke="#22d3ee" strokeWidth="0.5" />
-          <path d="M 95 5 H 88 M 95 5 V 12" stroke="#22d3ee" strokeWidth="0.5" />
-          <path d="M 5 95 H 12 M 5 95 V 88" stroke="#22d3ee" strokeWidth="0.5" />
-          <path d="M 95 95 H 88 M 95 95 V 88" stroke="#22d3ee" strokeWidth="0.5" />
-          {/* Crosshairs */}
-          <line x1="50" y1="2" x2="50" y2="8" stroke="#22d3ee" strokeWidth="0.4" />
-          <line x1="50" y1="92" x2="50" y2="98" stroke="#22d3ee" strokeWidth="0.4" />
-          <line x1="2" y1="50" x2="8" y2="50" stroke="#22d3ee" strokeWidth="0.4" />
-          <line x1="92" y1="50" x2="98" y2="50" stroke="#22d3ee" strokeWidth="0.4" />
-          {/* Degree ticks */}
-          <circle cx="50" cy="50" r="42" stroke="rgba(34, 211, 238, 0.12)" strokeWidth="0.3" strokeDasharray="1 3" />
-        </svg>
 
-        {/* Floating tech labels with parallax offsets */}
-        {TECH_LABELS.map((label, index) => (
-          <FloatingTechLabel
-            key={label.name}
-            label={label}
-            index={index}
-            mouseOffset={mouseOffset}
-          />
-        ))}
+
 
         {/* Circular portrait container */}
         <div
@@ -403,14 +280,6 @@ export default function HeroSection({ onReturn }: HeroSectionProps) {
       {/* Embedded CSS Animations */}
       <style dangerouslySetInnerHTML={{
         __html: `
-          @keyframes ch7Spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-          }
-          @keyframes ch7SpinCounter {
-            0% { transform: rotate(360deg); }
-            100% { transform: rotate(0deg); }
-          }
           @keyframes ch7ScanLine {
             0% { top: -5%; opacity: 0; }
             10% { opacity: 0.8; }

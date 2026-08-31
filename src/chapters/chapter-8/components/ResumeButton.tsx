@@ -74,9 +74,9 @@ export default function ResumeButton() {
 
       <style dangerouslySetInnerHTML={{ __html: `
         .c8-resume-btn:hover .c8-resume-icon-wrap {
-          border-color: rgba(192,132,252,0.25) !important;
-          background: rgba(192,132,252,0.07) !important;
-          color: rgba(192,132,252,0.8) !important;
+          border-color: rgba(255,255,255,0.25) !important;
+          background: rgba(255,255,255,0.07) !important;
+          color: rgba(255,255,255,0.8) !important;
         }
         .c8-resume-btn:hover .c8-resume-arrow-icon {
           transform: translateY(2px);

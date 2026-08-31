@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import { Environment } from "@/components/system/Environment";
+import { AppShell } from "@/components/system/Shell/AppShell";
 import "./globals.css";
 
 const poppins = Poppins({
@@ -31,7 +32,7 @@ export default function RootLayout({
           suppressHydrationWarning
         >
           <Environment />
-          {children}
+          <AppShell>{children}</AppShell>
         </body>
     </html>
   );

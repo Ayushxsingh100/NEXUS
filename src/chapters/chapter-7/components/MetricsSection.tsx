@@ -14,56 +14,56 @@ interface CounterStat {
 }
 
 const STATS: CounterStat[] = [
-  { 
-    id: "projects", 
-    label: "Projects Built", 
-    target: 3, 
-    suffix: "+", 
+  {
+    id: "projects",
+    label: "Projects Built",
+    target: 3,
+    suffix: "+",
     accent: "#22d3ee",
     image: "/media/metrics/projects_v3.png",
     desc: "Full-scale web applications designed and shipped."
   },
-  { 
-    id: "internships", 
-    label: "Internships", 
-    target: 1, 
-    suffix: "", 
+  {
+    id: "internships",
+    label: "Internships",
+    target: 2,
+    suffix: "",
     accent: "#3b82f6",
     image: "/media/metrics/internships_v3.png",
     desc: "Hands-on commercial engineering experience."
   },
-  { 
-    id: "tech", 
-    label: "Technologies Used", 
-    target: 15, 
-    suffix: "+", 
+  {
+    id: "tech",
+    label: "Technologies Used",
+    target: 15,
+    suffix: "+",
     accent: "#c084fc",
     image: "/media/metrics/tech_v3.png",
     desc: "Full-stack languages, libraries, and DevOps tools."
   },
-  { 
-    id: "blogs", 
-    label: "Blog Articles", 
-    target: 8, 
-    suffix: "", 
+  {
+    id: "blogs",
+    label: "Blog Articles",
+    target: 8,
+    suffix: "",
     accent: "#f472b6",
     image: "/media/metrics/blogs_v3.png",
     desc: "Technical articles on architecture and learnings."
   },
-  { 
-    id: "github", 
-    label: "GitHub Contributions", 
-    target: 450, 
-    suffix: "+", 
+  {
+    id: "github",
+    label: "GitHub Contributions",
+    target: 500,
+    suffix: "+",
     accent: "#4ade80",
     image: "/media/metrics/github_v3.png",
     desc: "Commits, reviews, and open-source contributions."
   },
-  { 
-    id: "dsa", 
-    label: "DSA Problems Solved", 
-    target: 600, 
-    suffix: "+", 
+  {
+    id: "dsa",
+    label: "DSA Problems Solved",
+    target: 100,
+    suffix: "+",
     accent: "#fb923c",
     image: "/media/metrics/dsa_v3.png",
     desc: "Algorithmic challenges solved across platforms."
@@ -104,11 +104,11 @@ function MetricCard({ s, count, visible, i }: { s: CounterStat; count: number; v
         background: `linear-gradient(135deg, ${s.accent}${hovered ? "44" : "15"}, transparent 80%)`,
         borderRadius: "24px",
         padding: "1px",
-        boxShadow: hovered 
+        boxShadow: hovered
           ? `0 30px 60px rgba(0,0,0,0.6), 0 0 35px ${s.accent}20, inset 0 1px 2px rgba(255,255,255,0.08)`
           : `0 8px 32px rgba(0,0,0,0.3), 0 0 20px ${s.accent}02, inset 0 1px 1px rgba(255,255,255,0.03)`,
         opacity: visible ? 1 : 0,
-        transform: visible 
+        transform: visible
           ? hovered ? "translateY(-6px)" : "translateY(0)"
           : "translateY(24px)",
         transition: `
@@ -140,7 +140,7 @@ function MetricCard({ s, count, visible, i }: { s: CounterStat; count: number; v
           style={{
             position: "absolute",
             inset: 0,
-            background: hovered 
+            background: hovered
               ? `radial-gradient(circle 120px at ${localMouse.x}% ${localMouse.y}%, ${s.accent}18, transparent)`
               : `radial-gradient(circle 120px at 50% 50%, ${s.accent}05, transparent)`,
             transition: hovered ? "none" : "background 400ms ease",
@@ -183,7 +183,7 @@ function MetricCard({ s, count, visible, i }: { s: CounterStat; count: number; v
         />
 
         {/* Subtle engineering grid blueprint background */}
-        <div 
+        <div
           aria-hidden="true"
           style={{
             position: "absolute",
@@ -226,8 +226,8 @@ function MetricCard({ s, count, visible, i }: { s: CounterStat; count: number; v
               animation: `ch7IconIdleFloat 6s ease-in-out infinite`,
               animationDelay: `${i * -0.7}s`,
               /* Overlap custom composition configurations and hover effects */
-              transform: hovered 
-                ? `${composition.transform} translateY(-8px) scale(1.06)` 
+              transform: hovered
+                ? `${composition.transform} translateY(-8px) scale(1.06)`
                 : `${composition.transform}`,
               transition: "transform 800ms cubic-bezier(0.16, 1, 0.3, 1)",
             }}
@@ -457,7 +457,8 @@ export default function MetricsSection() {
         })}
       </div>
 
-      <style dangerouslySetInnerHTML={{ __html: `
+      <style dangerouslySetInnerHTML={{
+        __html: `
         /* Drift background particles very slowly */
         @keyframes ch7ParticleDriftSlow {
           0%, 100% { transform: translateY(0px) translateX(0px); opacity: 0.15; }

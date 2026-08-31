@@ -18,7 +18,7 @@ function Field({ label, error, children }: FieldProps) {
         fontSize: "9.5px",
         fontFamily: "'Poppins', sans-serif",
         fontWeight: 600,
-        color: "rgba(255, 255, 255, 0.28)",
+        color: "rgba(255, 255, 255, 0.45)",
         letterSpacing: "0.12em",
         textTransform: "uppercase",
       }}>
@@ -91,13 +91,13 @@ export default function ContactForm() {
   const getInputStyle = (name: string): React.CSSProperties => ({
     width: "100%",
     background: focused === name
-      ? "rgba(167, 139, 250, 0.06)"
-      : "rgba(255, 255, 255, 0.035)",
+      ? "rgba(255, 255, 255, 0.04)"
+      : "rgba(0, 0, 0, 0.35)",
     border: errors[name]
       ? "1px solid rgba(248, 113, 113, 0.5)"
       : focused === name
-        ? "1px solid rgba(167, 139, 250, 0.5)"
-        : "1px solid rgba(255, 255, 255, 0.07)",
+        ? "1px solid rgba(255, 255, 255, 0.25)"
+        : "1px solid rgba(255, 255, 255, 0.08)",
     borderRadius: "14px",
     padding: "13px 16px",
     fontSize: "13.5px",
@@ -109,7 +109,7 @@ export default function ContactForm() {
     WebkitBackdropFilter: "blur(8px)",
     /* The key — box-shadow replaces the browser focus ring entirely */
     boxShadow: focused === name && !errors[name]
-      ? "0 0 0 3px rgba(139, 92, 246, 0.12), 0 2px 8px rgba(0,0,0,0.2)"
+      ? "0 0 0 3px rgba(255, 255, 255, 0.08), 0 2px 8px rgba(0,0,0,0.4)"
       : "0 2px 8px rgba(0,0,0,0.15)",
     transition: "border-color 200ms ease, box-shadow 200ms ease, background 200ms ease",
     boxSizing: "border-box",
@@ -187,7 +187,7 @@ export default function ContactForm() {
 
       {/* Submit row */}
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", paddingTop: "2px" }}>
-        <p style={{ fontSize: "11px", fontFamily: "'Poppins', sans-serif", color: "rgba(255,255,255,0.18)", margin: 0 }}>
+        <p style={{ fontSize: "11px", fontFamily: "'Poppins', sans-serif", color: "rgba(255,255,255,0.4)", margin: 0 }}>
           I read every message.
         </p>
 
@@ -250,7 +250,7 @@ export default function ContactForm() {
         form input:-webkit-autofill,
         form input:-webkit-autofill:focus,
         form input:-webkit-autofill:hover {
-          -webkit-box-shadow: 0 0 0 1000px rgba(20, 10, 40, 0.9) inset !important;
+          -webkit-box-shadow: 0 0 0 1000px rgba(10, 10, 10, 0.95) inset !important;
           -webkit-text-fill-color: #ffffff !important;
           transition: background-color 5000s ease-in-out 0s;
           caret-color: #ffffff;
@@ -269,7 +269,7 @@ export default function ContactForm() {
         @media (max-width: 520px) {
           .c8-form-row { grid-template-columns: 1fr !important; }
         }
-        input::placeholder, textarea::placeholder { color: rgba(255,255,255,0.18); font-weight: 400; }
+        input::placeholder, textarea::placeholder { color: rgba(255,255,255,0.42); font-weight: 400; }
         textarea { resize: none !important; }
         input, textarea { -webkit-font-smoothing: antialiased; }
       ` }} />

@@ -45,20 +45,20 @@ export default function SentConfirmation() {
         <div style={{
           position: "absolute",
           width: "80px", height: "80px", borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(192,132,252,0.15) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(74,222,128,0.15) 0%, transparent 70%)",
           filter: "blur(16px)",
         }} />
         <div style={{
           width: "56px", height: "56px", borderRadius: "50%",
-          border: "1px solid rgba(192, 132, 252, 0.2)",
-          background: "rgba(192, 132, 252, 0.07)",
+          border: "1px solid rgba(74, 222, 128, 0.25)",
+          background: "rgba(74, 222, 128, 0.07)",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          boxShadow: "0 0 24px rgba(192,132,252,0.12), inset 0 1px 0 rgba(255,255,255,0.08)",
+          boxShadow: "0 0 24px rgba(74,222,128,0.12), inset 0 1px 0 rgba(255,255,255,0.08)",
         }}>
           <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
-            stroke="rgba(192,132,252,0.9)" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+            stroke="rgba(74,222,128,0.9)" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
             <polyline points="20 6 9 17 4 12" />
           </svg>
         </div>
@@ -70,7 +70,7 @@ export default function SentConfirmation() {
         fontFamily: "'Poppins', sans-serif",
         fontWeight: 600,
         letterSpacing: "0.16em",
-        color: "rgba(192, 132, 252, 0.65)",
+        color: "rgba(74, 222, 128, 0.85)",
         textTransform: "uppercase",
         margin: "0 0 12px 0",
       }}>
@@ -106,7 +106,7 @@ export default function SentConfirmation() {
       {/* Thin purple divider */}
       <div style={{
         width: "32px", height: "1px",
-        background: "linear-gradient(90deg, transparent, rgba(192,132,252,0.4), transparent)",
+        background: "linear-gradient(90deg, transparent, rgba(74,222,128,0.4), transparent)",
         borderRadius: "2px",
       }} />
     </div>

@@ -4,9 +4,9 @@ import React, { useEffect } from "react";
 import dynamic from "next/dynamic";
 import { usePageTransition } from "@/context/PageTransitionContext";
 
-const ChapterOne = dynamic(() => import("@/chapters/chapter-1/ChapterOne"), { ssr: false });
+const ChapterEight = dynamic(() => import("@/chapters/chapter-8/ChapterEight"), { ssr: false });
 
-export default function Home() {
+export default function ContactPage() {
   const { navigateTo, markPageLoaded } = usePageTransition();
 
   useEffect(() => {
@@ -14,6 +14,9 @@ export default function Home() {
   }, [markPageLoaded]);
 
   return (
-    <ChapterOne onComplete={() => navigateTo("/thought-hub")} />
+    <ChapterEight
+      onReturn={() => navigateTo("/thought-hub")}
+      onCompleteJourney={() => navigateTo("/epilogue")}
+    />
   );
 }

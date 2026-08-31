@@ -107,20 +107,20 @@ export default function ContactLink({ href, label, sublabel, icon, external = tr
 
       <style dangerouslySetInnerHTML={{ __html: `
         .c8-contact-link:hover {
-          background: rgba(192, 132, 252, 0.04) !important;
+          background: rgba(255, 255, 255, 0.04) !important;
           padding-left: 8px !important;
         }
         .c8-contact-link:hover .c8-contact-icon {
-          border-color: rgba(192, 132, 252, 0.28) !important;
-          background: rgba(192, 132, 252, 0.08) !important;
-          color: rgba(192, 132, 252, 0.9) !important;
-          box-shadow: 0 0 12px rgba(192, 132, 252, 0.12) !important;
+          border-color: rgba(255, 255, 255, 0.25) !important;
+          background: rgba(255, 255, 255, 0.08) !important;
+          color: rgba(255, 255, 255, 0.9) !important;
+          box-shadow: 0 0 12px rgba(255, 255, 255, 0.08) !important;
         }
         .c8-contact-link:hover .c8-contact-label {
           color: rgba(255, 255, 255, 1) !important;
         }
         .c8-contact-link:hover .c8-contact-arrow {
-          color: rgba(192, 132, 252, 0.55) !important;
+          color: rgba(255, 255, 255, 0.5) !important;
           transform: translateX(4px) !important;
         }
       ` }} />

@@ -279,59 +279,7 @@ export default function ChapterOne({ onComplete }: ChapterOneProps) {
         <HeroBottomContent onTransition={triggerExitTransition} />
       </div>
 
-      {/* ── NEXUS mark — ONE instance, bottom-left ── */}
-      <div
-        style={{
-          position: "fixed",
-          left: "24px",
-          bottom: "24px",
-          zIndex: 30,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          userSelect: "none",
-        }}
-      >
-        <div
-          style={{
-            width: "36px",
-            height: "36px",
-            borderRadius: "50%",
-            padding: "1.5px",
-            background: "linear-gradient(135deg, #22d3ee, #3b82f6, #9333ea)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            boxShadow: "0 0 12px rgba(34,211,238,0.12)",
-            transition: "transform 0.3s ease",
-            cursor: "default",
-          }}
-        >
-          <div
-            style={{
-              width: "100%",
-              height: "100%",
-              borderRadius: "50%",
-              background: "#050608",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <span
-              style={{
-                fontFamily: "'Poppins', sans-serif",
-                color: "#ffffff",
-                fontWeight: 600,
-                fontSize: "11px",
-                letterSpacing: "0.02em",
-              }}
-            >
-              N
-            </span>
-          </div>
-        </div>
-      </div>
+
 
       {/* Fade overlay */}
       <BlackScreen />
