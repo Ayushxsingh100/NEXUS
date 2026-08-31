@@ -1,7 +1,7 @@
 <div align="center">
 <img src="./Hero.png"  alt="Projects Node" />
-# PROJECT NEXUS
 
+# PROJECT NEXUS
 ### The Architecture of Thought
 
 An interactive, cinematic portfolio experience that visualizes the journey of an engineer's mind.
